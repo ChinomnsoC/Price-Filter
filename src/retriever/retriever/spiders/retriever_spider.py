@@ -17,13 +17,13 @@ class RetrieverSpider(scrapy.Spider):
             yield scrapy.Request(url=url, headers=headers, callback=self.parse)
             
     
-    def parse(self, response):
-        for quote in response.css('div.quote'):
-            yield {
-                'text': quote.css('span.text::text').get(),
-                'author': quote.css('small.author::text').get(),
-                'tags': quote.css('div.tags a.tag::text').getall(),
-            }
+    # def parse(self, response):
+    #     for quote in response.css('div.quote'):
+    #         yield {
+    #             'text': quote.css('span.text::text').get(),
+    #             'author': quote.css('small.author::text').get(),
+    #             'tags': quote.css('div.tags a.tag::text').getall(),
+    #         }
 
     def parse(self, response):
         # page = response.url.split("/")[-2]

@@ -2,10 +2,13 @@
 
 An price tracker system that notifies a user about the percentage change in price beyond a fixed threshold
 
-Create a virtual environment
-run `scrapy runspider src/retriever/retriever/spiders/retriever_spider.py -o pricequotes.json`
 
-run `scrapy runspider Price-Filter/src/retriever/retriever.py -o pricequotes.jsonl`
-run `pip install -r requirements.txt`
+## How to Run
 
+1. run `pip install -r requirements.txt`
+2. cd into `src/retriever` directory
+2. run `scrapy crawl TvPrice`
+
+
+### Saving this here temporarily
 source /Users/chinomnso/envs/price-filter/bin/activate
