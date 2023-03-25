@@ -17,17 +17,14 @@ class RetrieverSpider(scrapy.Spider):
             yield scrapy.Request(url=url, headers=headers, callback=self.parse)
             
     
-    # def parse(self, response):
-    #     for quote in response.css('div.quote'):
-    #         yield {
-    #             'text': quote.css('span.text::text').get(),
-    #             'author': quote.css('small.author::text').get(),
-    #             'tags': quote.css('div.tags a.tag::text').getall(),
-    #         }
-
     def parse(self, response):
-        # page = response.url.split("/")[-2]
-        filename = f'ProductPage.html'
-        Path(filename).write_bytes(response.body)
-        self.log(f'Saved file {filename}')
-        print(response.body, "Responding...")
+        for price in response.css("div.Price_base__1OoOa"):
+            yield{
+                'prod_price': price.css("span::text").get(),
+            }
+  
+    # def parse(self, response):
+    #     filename = f'ProductPage.html'
+    #     Path(filename).write_bytes(response.body)
+    #     self.log(f'Saved file {filename}')
+    #     print(response.body, "Responding...")
