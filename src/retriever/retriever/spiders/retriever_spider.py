@@ -1,8 +1,6 @@
-from pathlib import Path
-import sys, os
-sys.path.append(os.path.abspath(os.path.join('../../../../', 'scrape_output')))
-
 import scrapy
+from scrapy.crawler import CrawlerProcess
+
 
 
 class RetrieverSpider(scrapy.Spider):
@@ -19,10 +17,18 @@ class RetrieverSpider(scrapy.Spider):
     
     def parse(self, response):
         for price in response.css("div.Price_base__1OoOa"):
+            print('Scrapy begins crawling')
             yield{
                 'prod_price': price.css("span::text").get(),
             }
-  
+    
+process = CrawlerProcess(settings={
+    "FEEDS": {
+        "items.json": {"format": "json"},
+    },
+})
+process.crawl(RetrieverSpider)
+process.start()
     # def parse(self, response):
     #     filename = f'ProductPage.html'
     #     Path(filename).write_bytes(response.body)
