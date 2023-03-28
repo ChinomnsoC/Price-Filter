@@ -1,8 +1,5 @@
-from pathlib import Path
-import sys, os
-sys.path.append(os.path.abspath(os.path.join('../../../../', 'scrape_output')))
-
 import scrapy
+from scrapy.crawler import CrawlerProcess
 
 
 class RetrieverSpider(scrapy.Spider):
@@ -16,18 +13,22 @@ class RetrieverSpider(scrapy.Spider):
         for url in urls:
             yield scrapy.Request(url=url, headers=headers, callback=self.parse)
             
-    
-    # def parse(self, response):
-    #     for quote in response.css('div.quote'):
-    #         yield {
-    #             'text': quote.css('span.text::text').get(),
-    #             'author': quote.css('small.author::text').get(),
-    #             'tags': quote.css('div.tags a.tag::text').getall(),
-    #         }
-
     def parse(self, response):
-        # page = response.url.split("/")[-2]
-        filename = f'ProductPage.html'
-        Path(filename).write_bytes(response.body)
-        self.log(f'Saved file {filename}')
-        print(response.body, "Responding...")
+        for price in response.css("div.Price_base__1OoOa"):
+            print('Scrapy begins crawling')
+            yield{
+                'prod_price': price.css("span::text").get(),
+            }
+    
+process = CrawlerProcess(settings={
+    "FEEDS": {
+        "items.json": {"format": "json"},
+    },
+})
+process.crawl(RetrieverSpider)
+process.start()
+    # def parse(self, response):
+    #     filename = f'ProductPage.html'
+    #     Path(filename).write_bytes(response.body)
+    #     self.log(f'Saved file {filename}')
+    #     print(response.body, "Responding...")
