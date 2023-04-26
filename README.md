@@ -4,12 +4,12 @@ An price tracker system that notifies a user about the percentage change in pric
 
 ## How to Run
 
-1. run `poetry shell`, then run `poetry install`
-2. cd into `src/retriever` directory
-3. run `scrapy crawl TvPrice -o ProductPage.jsonl`
+Make sure you are in the root folder.
+
+1. run `make run`.
+
 
 ### Saving this here temporarily
 
 source /Users/chinomnso/envs/price-filter/bin/activate
 To play with scrapy, `scrapy shell <web link>`
-
