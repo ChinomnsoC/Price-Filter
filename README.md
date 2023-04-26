@@ -4,7 +4,7 @@ An price tracker system that notifies a user about the percentage change in pric
 
 ## How to Run
 
-1. run `pip install -r requirements.txt`
+1. run `poetry shell`, then run `poetry install`
 2. cd into `src/retriever` directory
 3. run `scrapy crawl TvPrice -o ProductPage.jsonl`
 
