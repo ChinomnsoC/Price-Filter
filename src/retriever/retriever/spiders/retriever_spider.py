@@ -13,6 +13,7 @@ class RetrieverSpider(scrapy.Spider):
         for url in urls:
             yield scrapy.Request(url=url, headers=headers, callback=self.parse)
             
+            
     def parse(self, response):
         for price in response.css("div.Price_base__1OoOa"):
             print('Scrapy begins crawling')
