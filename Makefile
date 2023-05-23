@@ -5,7 +5,7 @@ setup: ## Activates virtual environment and installs dependencies
 scrape: ## Runs the srapy command to scrape the website
 	@{\
 		pushd src/retriever ;\
-		scrapy crawl TvPrice -o ProductPage.jsonl ;\
+		scrapy crawl TvPrice --overwrite-output ProductPage.json ;\
 		popd ;\
 	}
 
