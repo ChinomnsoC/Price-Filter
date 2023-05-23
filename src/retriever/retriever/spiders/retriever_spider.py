@@ -21,7 +21,6 @@ class RetrieverSpider(scrapy.Spider):
                 'prod_price': price.css("span::text").get(),
             }
 
-
     # def parse(self, response):
     #     filename = f'ProductPage.html'
     #     Path(filename).write_bytes(response.body)
