@@ -1,0 +1,1 @@
+const noway = new Date
