@@ -16,8 +16,6 @@ scrapy = "^2.8.0"
 Twisted = "^21.7.0"
 uvicorn = "^0.21.1"
 validators = "^0.20.0"
-beautifulsoup4 = "^4.13.4"
-openpyxl = "^3.1.5"
 
 
 [build-system]
